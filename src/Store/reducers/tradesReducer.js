@@ -7,10 +7,9 @@ const INITIAL_STATE = {
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case GET_LATEST_TRADES:
-    console.log('called');
     return {
       ...state,
-      trades: [...state.trades, ...action.data]
+      list: [...state.list, ...action.data]
     };
 
   default: return state;
