@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import DataGrid from './DataGrid';
-import AppConstants from '../../../../Constants/AppConstants';
+import AppConstants from '../../../Constants/AppConstants';
 
 const rows = new Array(10).fill(0).map((_, index) => ({
   id: index,
