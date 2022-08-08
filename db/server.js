@@ -27,6 +27,7 @@ const generateNewTrades = () => {
 };
 
 server.get('/trades', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.jsonp(generateNewTrades());
 });
 
