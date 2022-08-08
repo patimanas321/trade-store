@@ -1,10 +1,15 @@
 import React from 'react';
 import DataGrid from '../../Components/core/DataGrid/DataGrid';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import useLocalize from '../../Hooks/useLocalize';
 
 // import styles from './Header.module.css';
 
-const Trades = () => {
+const Trades = ({
+  trades
+}) => {
   const translate = useLocalize();
   const cols = [
     {
@@ -51,4 +56,12 @@ const Trades = () => {
   );
 };
 
-export default Trades;
+const mapStateToProps = (state) => ({
+  trades: state.trades.list
+});
+
+export default connect(mapStateToProps)(Trades);
+
+Trades.propTypes = {
+  trades: PropTypes.arrayOf(PropTypes.object).isRequired
+};
