@@ -4,9 +4,8 @@ module.exports = {
       es2021: true
     },
     extends: [
-        'plugin:react/recommended',
-        'plugin:prettier/recommended',
-        'standard'
+      'plugin:react/recommended',
+      'standard'
     ],
     parserOptions: {
       ecmaFeatures: {
