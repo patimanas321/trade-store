@@ -17,7 +17,7 @@ const generateNewTrades = () => {
       id: `TRADE_${generateRandomNumber(1, 1000).toString().padStart(4, '0')}`,
       version: generateRandomNumber(1, 10),
       counterPartyId: `Counter-Party-${i}`,
-      bookingId: `B${generateRandomNumber(1, 10000).toString().padStart(5, '0')}`,
+      bookingId: `B_${generateRandomNumber(1, 10000).toString().padStart(5, '0')}`,
       maturityDate: generateRandomMaturityDate(),
       createdDate: new Date()
     });

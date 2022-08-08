@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 
 const sortRecords = (records, { column, order }) => {
   return records.sort((a, b) => {
-    if (order === AppConstants.SORT_ORDER.Ascending) {
+    if (order === AppConstants.SORT_ORDER.ASCENDING) {
       return a[column] > b[column] ? 1 : -1;
     }
     return a[column] > b[column] ? -1 : 1;
