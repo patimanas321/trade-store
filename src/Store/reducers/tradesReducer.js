@@ -1,10 +1,21 @@
-import { GET_LATEST_TRADES, SET_SORT_COL, SET_SORT_ORDER } from '../actionTypes';
+import { GET_LATEST_TRADES, SET_SORT_MODEL } from '../actionTypes';
 import AppConstants from '../../Constants/AppConstants';
 
 const INITIAL_STATE = {
   list: [],
-  sortColumn: AppConstants.TRADE_COLS.ID,
-  sortOrder: AppConstants.SORT_ORDER.ASCENDING
+  sortModel: {
+    column: AppConstants.TRADE_COLS.ID,
+    order: AppConstants.SORT_ORDER.ASCENDING
+  }
+};
+
+const sortRecords = (records, { column, order }) => {
+  return records.sort((a, b) => {
+    if (order === AppConstants.SORT_ORDER.Ascending) {
+      return a[column] > b[column] ? 1 : -1;
+    }
+    return a[column] > b[column] ? -1 : 1;
+  });
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -15,16 +26,11 @@ const reducer = (state = INITIAL_STATE, action) => {
       list: [...state.list, ...action.data]
     };
 
-  case SET_SORT_COL:
+  case SET_SORT_MODEL:
     return {
       ...state,
-      sortColumn: action.data
-    };
-
-  case SET_SORT_ORDER:
-    return {
-      ...state,
-      sortOrder: action.data
+      sortModel: action.data,
+      list: sortRecords(state.list, action.data)
     };
 
   default: return state;

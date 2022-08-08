@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import useLocalize from '../../Hooks/useLocalize';
-import { getNewTrades, setSortColumn, setSortOrder } from '../../Store/actions/tradeActions';
+import { getNewTrades, setSortModel } from '../../Store/actions/tradeActions';
 import AppConstants from '../../Constants/AppConstants';
 
 // import styles from './Header.module.css';
@@ -14,8 +14,7 @@ const Trades = ({
   fetchNewTrades,
   sortColumn,
   sortOrder,
-  setSortColumn,
-  setSortOrder
+  setSortModel
 }) => {
   const translate = useLocalize();
   const { TRADE_COLS } = AppConstants;
@@ -59,8 +58,7 @@ const Trades = ({
     }
   ];
   const handleSort = (col, order) => {
-    setSortColumn(col);
-    setSortOrder(order);
+    setSortModel(col, order);
   };
 
   useEffect(() => {
@@ -74,14 +72,13 @@ const Trades = ({
 
 const mapStateToProps = ({ trades }) => ({
   trades: trades.list,
-  sortOrder: trades.sortOrder,
-  sortColumn: trades.sortColumn
+  sortOrder: trades.sortModel.order,
+  sortColumn: trades.sortModel.column
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchNewTrades: () => dispatch(getNewTrades()),
-  setSortOrder: (order) => dispatch(setSortOrder(order)),
-  setSortColumn: (col) => dispatch(setSortColumn(col))
+  setSortModel: (col, order) => dispatch(setSortModel(col, order))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Trades);
@@ -91,6 +88,5 @@ Trades.propTypes = {
   fetchNewTrades: PropTypes.func.isRequired,
   sortOrder: PropTypes.string.isRequired,
   sortColumn: PropTypes.string.isRequired,
-  setSortOrder: PropTypes.string.isRequired,
-  setSortColumn: PropTypes.func.isRequired
+  setSortModel: PropTypes.func.isRequired
 };
