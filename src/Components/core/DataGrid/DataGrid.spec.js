@@ -85,11 +85,11 @@ test('should sort the column when clicked on headers', () => {
 
   const nameColSortHandle = screen.getByTestId(selector.getColSortHandle(cols[1].field));
   nameColSortHandle.click();
-  expect(onSortMock).toHaveBeenLastCalledWith(cols[1].field, AppConstants.SORT_ORDER.Ascending);
+  expect(onSortMock).toHaveBeenLastCalledWith(cols[1].field, AppConstants.SORT_ORDER.ASCENDING);
 
   const scoresColSortHandle = screen.getByTestId(selector.getColSortHandle(cols[3].field));
   scoresColSortHandle.click();
-  expect(onSortMock).toHaveBeenLastCalledWith(cols[3].field, AppConstants.SORT_ORDER.Ascending);
+  expect(onSortMock).toHaveBeenLastCalledWith(cols[3].field, AppConstants.SORT_ORDER.ASCENDING);
 });
 
 test('should render no data message when there are no rows', () => {

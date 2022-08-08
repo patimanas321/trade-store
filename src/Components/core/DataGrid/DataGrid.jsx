@@ -6,6 +6,7 @@ import styles from './DataGrid.module.css';
 import AppConstants from '../../../Constants/AppConstants';
 import useLocalize from '../../../Hooks/useLocalize';
 
+const { SORT_ORDER: { ASCENDING, DESCENDING } } = AppConstants;
 const DataGrid = ({
   rows,
   columns,
@@ -16,11 +17,11 @@ const DataGrid = ({
   const translate = useLocalize();
   const handleColumnSort = (col) => {
     if (col !== sortCol) {
-      onSort(col, AppConstants.SORT_ORDER.Ascending);
+      onSort(col, ASCENDING);
     } else {
       onSort(
         sortCol,
-        sortOrder === AppConstants.SORT_ORDER.Ascending ? AppConstants.SORT_ORDER.Descending : AppConstants.SORT_ORDER.Ascending
+        sortOrder === ASCENDING ? DESCENDING : ASCENDING
       );
     }
   };
@@ -55,7 +56,7 @@ const DataGrid = ({
                       className={styles.sortHandle}
                     >
                       {sortCol !== col.field && <FontAwesomeIcon icon={faArrowsUpDown} />}
-                      {sortCol === col.field && <FontAwesomeIcon icon={sortOrder === AppConstants.SORT_ORDER.Ascending ? faArrowDown : faArrowUp} />}
+                      {sortCol === col.field && <FontAwesomeIcon icon={sortOrder === AppConstants.SORT_ORDER.ascending ? faArrowDown : faArrowUp} />}
                     </i>
                   </a>
                 )

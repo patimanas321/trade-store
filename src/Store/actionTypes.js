@@ -1,1 +1,3 @@
 export const GET_LATEST_TRADES = 'GET_LATEST_TRADES';
+export const SET_SORT_COL = 'SET_SORT_COL';
+export const SET_SORT_ORDER = 'SET_SORT_ORDER';

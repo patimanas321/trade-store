@@ -1,67 +1,96 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DataGrid from '../../Components/core/DataGrid/DataGrid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import useLocalize from '../../Hooks/useLocalize';
+import { getNewTrades, setSortColumn, setSortOrder } from '../../Store/actions/tradeActions';
+import AppConstants from '../../Constants/AppConstants';
 
 // import styles from './Header.module.css';
 
 const Trades = ({
-  trades
+  trades,
+  fetchNewTrades,
+  sortColumn,
+  sortOrder,
+  setSortColumn,
+  setSortOrder
 }) => {
   const translate = useLocalize();
+  const { TRADE_COLS } = AppConstants;
   const cols = [
     {
       title: translate('trades.id'),
-      field: 'id',
+      field: TRADE_COLS.ID,
       sortable: true
     },
     {
       title: translate('trades.version'),
-      field: 'version'
+      field: TRADE_COLS.VERSION
     },
     {
       title: translate('trades.counter_party_id'),
-      field: 'counterPartyId',
+      field: TRADE_COLS.COUNTER_PARTY_ID,
       sortable: true
     },
     {
       title: translate('trades.booking_id'),
-      field: 'bookingId',
+      field: TRADE_COLS.BOOKING_ID,
       sortable: true
     },
     {
       title: translate('trades.maturity_date'),
-      field: 'maturityDate',
+      field: TRADE_COLS.MATURITY_DATE,
       sortable: true,
       renderCell: (value) => value.toLocaleDateString()
     },
     {
       title: translate('trades.created_date'),
-      field: 'createdDate',
+      field: TRADE_COLS.CREATED_DATE,
       sortable: true,
       renderCell: (value) => value.toLocaleDateString()
     },
     {
       title: translate('trades.expired'),
-      field: 'expired',
+      field: TRADE_COLS.EXPIRED,
       sortable: true,
-      renderCell: (_, row) => row.maturityDate > new Date() ? translate('generic.yes') : translate('generic.no')
+      renderCell: (value) => value ? translate('generic.yes') : translate('generic.no')
     }
   ];
+  const handleSort = (col, order) => {
+    setSortColumn(col);
+    setSortOrder(order);
+  };
+
+  useEffect(() => {
+    fetchNewTrades().then();
+  }, []);
 
   return (
-    <DataGrid columns={cols} rows={[]} />
+    <DataGrid columns={cols} rows={trades} sortCol={sortColumn} sortOrder={sortOrder} onSort={handleSort} />
   );
 };
 
-const mapStateToProps = (state) => ({
-  trades: state.trades.list
+const mapStateToProps = ({ trades }) => ({
+  trades: trades.list,
+  sortOrder: trades.sortOrder,
+  sortColumn: trades.sortColumn
 });
 
-export default connect(mapStateToProps)(Trades);
+const mapDispatchToProps = (dispatch) => ({
+  fetchNewTrades: () => dispatch(getNewTrades()),
+  setSortOrder: (order) => dispatch(setSortOrder(order)),
+  setSortColumn: (col) => dispatch(setSortColumn(col))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Trades);
 
 Trades.propTypes = {
-  trades: PropTypes.arrayOf(PropTypes.object).isRequired
+  trades: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchNewTrades: PropTypes.func.isRequired,
+  sortOrder: PropTypes.string.isRequired,
+  sortColumn: PropTypes.string.isRequired,
+  setSortOrder: PropTypes.string.isRequired,
+  setSortColumn: PropTypes.func.isRequired
 };
