@@ -28,3 +28,9 @@
 .sortHandle {
     color: #808080;
 }
+
+.noData {
+    padding: 2rem;
+    text-align: center;;
+    color: #727070;
+}

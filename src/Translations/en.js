@@ -11,7 +11,8 @@ const strings = {
   },
   generic: {
     yes: 'Y',
-    no: 'N'
+    no: 'N',
+    no_records_found: 'No records found'
   }
 };
 

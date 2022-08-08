@@ -4,6 +4,7 @@ import { faArrowsUpDown, faArrowUp, faArrowDown } from '@fortawesome/free-solid-
 
 import styles from './DataGrid.module.css';
 import AppConstants from '../../../Constants/AppConstants';
+import useLocalize from '../../../Hooks/useLocalize';
 
 const DataGrid = ({
   rows,
@@ -12,6 +13,7 @@ const DataGrid = ({
   sortOrder,
   onSort
 }) => {
+  const translate = useLocalize();
   const handleColumnSort = (col) => {
     if (col !== sortCol) {
       onSort(col, AppConstants.SORT_ORDER.Ascending);
@@ -69,6 +71,16 @@ const DataGrid = ({
           ))
         }
       </div>
+      {
+        rows.length === 0 && (
+          <h3
+            data-testid="no-data-message"
+            className={styles.noData}
+          >
+            {translate('generic.no_records_found')}
+          </h3>
+        )
+      }
     </div>
   );
 };
