@@ -40,14 +40,35 @@ const selector = {
   noDataMessage: 'no-data-message'
 };
 
+test('should contain column header row', () => {
+  render(<DataGrid rows={rows} columns={cols} />);
+
+  const rowsInTable = screen.getAllByRole('row');
+  expect(rowsInTable[0]).toHaveAttribute('aria-rowindex', '1');
+});
+
 test('should contain column headers', () => {
   render(<DataGrid rows={rows} columns={cols} />);
-  for (const col of cols) {
+
+  for (let i=0; i < cols.length; i++) {
+    const col = cols[i];
+
+    // Validate aria-colindex attribute
     const header = screen.getByTestId(selector.getColHeader(col.field));
     expect(header).toBeInTheDocument();
+    expect(header).toHaveAttribute('aria-colindex', (i + 1).toString());
+
+    // Validate rendered text
     const headerTitle = screen.getByTestId(selector.getColTitle(col.field));
     expect(headerTitle).toBeInTheDocument();
+    expect(headerTitle).toHaveTextContent(col.title);
+  }
+});
 
+test('should column headers contain sort handles', () => {
+  render(<DataGrid rows={rows} columns={cols} />);
+
+  for (const col of cols) {
     if (col.sortable) {
       const sortHandle = screen.getByTestId(selector.getColSortHandle(col.field));
       expect(sortHandle).toBeInTheDocument();
