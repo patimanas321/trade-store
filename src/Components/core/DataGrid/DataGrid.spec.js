@@ -105,6 +105,7 @@ test('should render rows', () => {
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
     const dataRow = screen.getByTestId(selector.getDataRow(i));
+    expect(dataRow).toHaveAttribute('aria-rowindex', (i + 2).toString());
     expect(dataRow).toBeInTheDocument();
     expect(dataRow).toHaveTextContent(row.rollNo);
     expect(dataRow).toHaveTextContent(row.name);
