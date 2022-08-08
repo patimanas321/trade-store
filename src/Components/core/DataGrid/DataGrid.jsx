@@ -72,7 +72,7 @@ const DataGrid = ({
         }
       </div>
       {
-        rows.length === 0 && (
+        !rows.length && (
           <h3
             data-testid="no-data-message"
             className={styles.noData}
@@ -80,6 +80,30 @@ const DataGrid = ({
             {translate('generic.no_records_found')}
           </h3>
         )
+      }
+      {
+        !!rows.length && rows.map((row, index) => (
+          <div
+            role="row"
+            key={row.id ?? index}
+            className={styles.dataRow}
+            aria-rowindex={index + 2}
+            data-testid={`data-row-${index}`}
+          >
+            {
+              columns.map((col, index) => (
+                <div
+                  key={`col-${index}`}
+                  role="gridcell"
+                  className={styles.dataCell}
+                  aria-colindex={index + 1}
+                >
+                  {col.renderCell ? col.renderCell(row[col.field], row) : row[col.field]}
+                </div>
+              ))
+            }
+          </div>
+        ))
       }
     </div>
   );
