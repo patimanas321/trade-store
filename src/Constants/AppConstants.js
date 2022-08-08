@@ -3,7 +3,7 @@ const AppConstants = {
   SORT_ORDER: {
     Ascending: 'asc',
     Descending: 'desc'
-  },
+  }
 };
 
 export default AppConstants;
