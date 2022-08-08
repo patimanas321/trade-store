@@ -1,0 +1,12 @@
+.grid {
+}
+
+.dataRow, .headerRow {
+    display: flex;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.dataCell, .headerCell {
+    flex: 1;
+    padding: 1rem;
+}
