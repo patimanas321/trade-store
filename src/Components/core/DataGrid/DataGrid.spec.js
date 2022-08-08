@@ -50,7 +50,7 @@ test('should contain column header row', () => {
 test('should contain column headers', () => {
   render(<DataGrid rows={rows} columns={cols} />);
 
-  for (let i=0; i < cols.length; i++) {
+  for (let i = 0; i < cols.length; i++) {
     const col = cols[i];
 
     // Validate aria-colindex attribute

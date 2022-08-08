@@ -10,3 +10,21 @@
     flex: 1;
     padding: 1rem;
 }
+
+.headerCell {
+    font-weight: bold;
+}
+
+.headerCell:hover {
+    background-color: #ede8e8;
+}
+
+.sortableHeader {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.sortHandle {
+    color: #808080;
+}
