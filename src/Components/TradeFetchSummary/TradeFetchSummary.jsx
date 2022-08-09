@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faSquare } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../core/Button';
 import useLocalize from '../../Hooks/useLocalize';
@@ -17,7 +17,7 @@ const TradeFetchSummary = ({
       aria-hidden="true"
       className={styles.bullet}
     >
-      <FontAwesomeIcon icon={faArrowCircleRight} />
+      <FontAwesomeIcon icon={faSquare} />
     </i>
   );
 
