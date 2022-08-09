@@ -25,9 +25,9 @@ export function mergeTrades (list, newTrades) {
       continue;
     }
     // If same version - OVERRIDE
-    const matchingIdAndVersionIndex = copy.indexOf(entry => entry.id === trade.id && entry.version === trade.version);
-    if (matchingIdAndVersionIndex > -1) {
-      copy[matchingIdAndVersionIndex] = trade;
+    const matchingIdAndVersion = copy.find(entry => entry.id === trade.id && entry.version === trade.version);
+    if (matchingIdAndVersion) {
+      copy[copy.indexOf(matchingIdAndVersion)] = trade;
       sameVersionCount++;
       continue;
     }
