@@ -24,7 +24,7 @@ test('should render summary', () => {
 
   const lastFetch = screen.getByTestId(selectors.lastFetch);
   expect(lastFetch).toBeInTheDocument();
-  expect(lastFetch).toHaveTextContent(data.updatedAt.toLocaleDateString());
+  expect(lastFetch).toHaveTextContent(data.updatedAt.toLocaleTimeString());
 
   const lowerVersionCount = screen.getByTestId(selectors.lowerVersionCount);
   expect(lowerVersionCount).toBeInTheDocument();
