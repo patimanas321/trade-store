@@ -1,6 +1,6 @@
 # Trade Store Application
 
-![Trade Store](./Screenshots/Screenshot_1.png)
+![Trade Store](./screenshots/Screenshot_1.png)
 
 # Running Application in local
 
@@ -54,9 +54,9 @@ Builds the app for production to the `build` folder.
 
 This application have more then 80% of unit test coverage
 
-![Code Coverage](./Screenshots/Screenshot_2.png)
+![Code Coverage](./screenshots/Screenshot_2.png)
 
 # Light House report
 
-![Light House report](./Screenshots/Screenshot_3.png)
+![Light House report](./screenshots/Screenshot_3.png)
 
