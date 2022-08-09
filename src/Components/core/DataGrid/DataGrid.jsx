@@ -87,7 +87,7 @@ const DataGrid = ({
           !!rows.length && rows.map((row, index) => (
             <div
               role="row"
-              key={row.id ?? index}
+              key={row.id ? `row-${row.id}-${index}` : index}
               className={styles.dataRow}
               aria-rowindex={index + 2}
               data-testid={`data-row-${index}`}

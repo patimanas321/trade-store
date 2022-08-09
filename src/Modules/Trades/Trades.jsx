@@ -3,19 +3,18 @@ import DataGrid from '../../Components/core/DataGrid/DataGrid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Button from '../../Components/core/Button';
+import TradeFetchSummary from '../../Components/TradeFetchSummary';
 import useLocalize from '../../Hooks/useLocalize';
 import { getNewTrades, setSortModel } from '../../Store/actions/tradeActions';
 import AppConstants from '../../Constants/AppConstants';
-
-import styles from './Trades.module.css';
 
 const Trades = ({
   trades,
   fetchNewTrades,
   sortColumn,
   sortOrder,
-  setSortModel
+  setSortModel,
+  lastUpdate
 }) => {
   const translate = useLocalize();
   const { TRADE_COLS } = AppConstants;
@@ -61,15 +60,14 @@ const Trades = ({
   const handleSort = (col, order) => {
     setSortModel(col, order);
   };
-
-  useEffect(fetchNewTrades, []);
+  useEffect(() => {
+    fetchNewTrades().then();
+  }, []);
 
   return (
     <>
+      <TradeFetchSummary summary={lastUpdate} onFetchNewRecords={fetchNewTrades} />
       <DataGrid columns={cols} rows={trades} sortCol={sortColumn} sortOrder={sortOrder} onSort={handleSort} />
-      <div className={styles.actionRow}>
-        <Button label={translate('trades.fetch_new_trades')} onClick={() => fetchNewTrades()} />
-      </div>
     </>
   );
 };
@@ -77,7 +75,8 @@ const Trades = ({
 const mapStateToProps = ({ trades }) => ({
   trades: trades.list,
   sortOrder: trades.sortModel.order,
-  sortColumn: trades.sortModel.column
+  sortColumn: trades.sortModel.column,
+  lastUpdate: trades.lastUpdate
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -92,5 +91,6 @@ Trades.propTypes = {
   fetchNewTrades: PropTypes.func.isRequired,
   sortOrder: PropTypes.string.isRequired,
   sortColumn: PropTypes.string.isRequired,
-  setSortModel: PropTypes.func.isRequired
+  setSortModel: PropTypes.func.isRequired,
+  lastUpdate: PropTypes.object.isRequired
 };
