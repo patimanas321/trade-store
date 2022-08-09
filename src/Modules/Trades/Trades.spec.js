@@ -60,7 +60,7 @@ test('should render summary', () => {
     />,
     INITIAL_STATE
   ));
-  const lastUpdated = screen.getByText(strings.trade_summary.last_fetch.replace('$DATE', lastUpdate.updatedAt?.toLocaleDateString()));
+  const lastUpdated = screen.getByText(strings.trade_summary.last_fetch.replace('$DATE', lastUpdate.updatedAt?.toLocaleTimeString()));
   expect(lastUpdated).toBeInTheDocument();
 
   const validRecordsCount = screen.getByText(strings.trade_summary.valid_records_count.replace('$COUNT', lastUpdate.validRecordsCount));

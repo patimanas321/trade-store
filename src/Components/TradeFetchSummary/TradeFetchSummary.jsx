@@ -24,7 +24,12 @@ const TradeFetchSummary = ({
   return (
     <section className={styles.wrapper}>
       <div className={styles.summary}>
-        <p data-testid="last_fetch" className={styles.date}>{translate('trade_summary.last_fetch').replace('$DATE', summary.updatedAt?.toLocaleDateString() ?? '--')}</p>
+        <p
+          data-testid="last_fetch"
+          className={styles.date}
+        >
+          {translate('trade_summary.last_fetch').replace('$DATE', summary.updatedAt?.toLocaleTimeString() ?? '--')}
+        </p>
         <div className={styles.details}>
           <div>
             <p data-testid="valid_records_count" className={styles.info}>
