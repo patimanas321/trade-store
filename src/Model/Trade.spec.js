@@ -10,13 +10,17 @@ test('should set values properly', () => {
     createdDate: '2022-08-08T20:30:45.848Z'
   };
 
+  const maturityDate = new Date(rawData.maturityDate);
+  maturityDate.setHours(0, 0, 0, 0);
+  const createdDate = new Date(rawData.createdDate);
+  createdDate.setHours(0, 0, 0, 0);
   const trade = new Trade(rawData);
   expect(trade.id).toBe(rawData.id);
   expect(trade.bookingId).toBe(rawData.bookingId);
   expect(trade.version).toBe(rawData.version);
   expect(trade.counterPartyId).toBe(rawData.counterPartyId);
   expect(trade.bookingId).toBe(rawData.bookingId);
-  expect(trade.maturityDate.toISOString()).toBe(rawData.maturityDate);
-  expect(trade.createdDate.toISOString()).toBe(rawData.createdDate);
+  expect(trade.maturityDate).toStrictEqual(maturityDate);
+  expect(trade.createdDate).toStrictEqual(createdDate);
   expect(trade.expired).toBe(true);
 });
