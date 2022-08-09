@@ -4,6 +4,7 @@ import Header from './Components/Header/Header';
 import Trades from './Modules/Trades';
 import styles from './App.module.css';
 import ErrorBoundary from './ErrorBoundary';
+import APIError from '../../Components/APIError';
 
 function App () {
   return (
@@ -11,6 +12,7 @@ function App () {
       <div className={styles.contentWrapper}>
         <Header />
         <ErrorBoundary>
+          <APIError />
           <Trades />
         </ErrorBoundary>
       </div>

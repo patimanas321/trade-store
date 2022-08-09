@@ -57,17 +57,14 @@ const Trades = ({
       renderCell: (value) => value ? translate('generic.yes') : translate('generic.no')
     }
   ];
-  const handleSort = (col, order) => {
-    setSortModel(col, order);
-  };
   useEffect(() => {
-    fetchNewTrades().then();
+    fetchNewTrades();
   }, []);
 
   return (
     <>
       <TradeFetchSummary summary={lastUpdate} onFetchNewRecords={fetchNewTrades} />
-      <DataGrid columns={cols} rows={trades} sortCol={sortColumn} sortOrder={sortOrder} onSort={handleSort} />
+      <DataGrid columns={cols} rows={trades} sortCol={sortColumn} sortOrder={sortOrder} onSort={setSortModel} />
     </>
   );
 };
