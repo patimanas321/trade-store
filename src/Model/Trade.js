@@ -10,21 +10,18 @@ class Trade {
   }
 
   get maturityDate () {
-    const date = new Date(this._maturityDate);
-    date.setHours(0, 0, 0, 0);
-
-    return date;
+    return new Date(this._maturityDate);
   }
 
   get createdDate () {
-    const date = new Date(this._createdDate);
-    date.setHours(0, 0, 0, 0);
-
-    return date;
+    return new Date(this._createdDate);
   }
 
   get expired () {
-    return this.maturityDate > new Date();
+    const today = new Date();
+    today.setHours(24, 0, 0, 0);
+
+    return this.maturityDate < today;
   }
 }
 

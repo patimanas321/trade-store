@@ -12,11 +12,10 @@ const generateRandomMaturityDate = () => {
 };
 const generateNewTrades = () => {
   const res = [];
-  const timeStamp = new Date().valueOf();
 
   for (let i = 0; i < 10; i++) {
     res.push({
-      id: `TRADE_${timeStamp + i}`,
+      id: `TRADE_${generateRandomNumber(1, 20).toString().padStart(4, '0')}`,
       version: generateRandomNumber(1, 10),
       counterPartyId: `Counter-Party-${i}`,
       bookingId: `B_${generateRandomNumber(1, 10000).toString().padStart(5, '0')}`,
