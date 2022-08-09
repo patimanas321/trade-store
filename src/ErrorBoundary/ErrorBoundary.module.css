@@ -1,0 +1,13 @@
+.errorPage {
+    text-align: center;
+}
+
+.errorPage h2 {
+    font-size: 10rem;
+    margin-bottom: 0;
+}
+
+.errorPage h3 {
+    font-size: 5rem;
+    margin: 1rem;
+}
