@@ -20,8 +20,7 @@ module.exports = {
   ],
   rules: {
     semi: [2, 'always'],
-    indent: ['error', 2],
-    'react/react-in-jsx-scope': 'off'
+    indent: ['error', 2]
   },
   overrides: [
     {
