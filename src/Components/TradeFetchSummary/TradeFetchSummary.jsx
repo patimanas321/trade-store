@@ -62,7 +62,7 @@ TradeFetchSummary.propTypes = {
     sameVersionCount: PropTypes.number,
     lessMaturityDateCount: PropTypes.number,
     validRecordsCount: PropTypes.number
-  }),
+  }).isRequired,
   onFetchNewRecords: PropTypes.func.isRequired
 };
 

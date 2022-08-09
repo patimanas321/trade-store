@@ -92,5 +92,11 @@ Trades.propTypes = {
   sortOrder: PropTypes.string.isRequired,
   sortColumn: PropTypes.string.isRequired,
   setSortModel: PropTypes.func.isRequired,
-  lastUpdate: PropTypes.object.isRequired
+  lastUpdate: PropTypes.shape({
+    updatedAt: PropTypes.object,
+    lowerVersionCount: PropTypes.number,
+    sameVersionCount: PropTypes.number,
+    lessMaturityDateCount: PropTypes.number,
+    validRecordsCount: PropTypes.number
+  }).isRequired
 };
