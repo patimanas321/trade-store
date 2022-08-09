@@ -12,7 +12,8 @@ const strings = {
   generic: {
     yes: 'Y',
     no: 'N',
-    no_records_found: 'No records found'
+    no_records_found: 'No records found',
+    total: 'Total'
   }
 };
 

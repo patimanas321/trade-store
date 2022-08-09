@@ -6,8 +6,10 @@ import styles from './App.module.css';
 function App () {
   return (
     <div className={styles.app}>
-      <Header />
-      <Trades />
+      <div className={styles.contentWrapper}>
+        <Header />
+        <Trades />
+      </div>
     </div>
   );
 }
