@@ -26,6 +26,16 @@ npm start
 - Store automatically updates expiry of all trades in store.
 - After each fetch, fetch summary is displayed reflecting all rejections/additions.
 
+# Highlights
+## React Virtualization
+- `<DataGrid />` component is capable of handling thousands of records.
+- [react-virtualized](https://www.npmjs.com/package/react-virtualized) is implemented in order to achieve this.
+- This allows the grid to render only visible rows without generating all rows.
+- e.g Even if the dataset has 10K records, user would be only viewing 20-30 records at a time. Hence the application will render faster if we load only visible 40 records.
+- A huge performance improvement can be seen by toggling `virtualize` prop of `<DataGrid />` component at `./Modules/Trades/Trades.jsx`.
+
+## Redux Store
+- Application state is manged by [react-redux](https://www.npmjs.com/package/react-redux)
 # Available Scripts
 
 In the project directory, you can run:
