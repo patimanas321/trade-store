@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { AutoSizer, List } from 'react-virtualized';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowsUpDown, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,6 +12,7 @@ const { SORT_ORDER } = AppConstants;
 const DataGrid = ({
   rows,
   columns,
+  virtualize = false,
   sortCol,
   sortOrder,
   onSort
@@ -25,6 +27,33 @@ const DataGrid = ({
         sortOrder === SORT_ORDER.ASCENDING ? SORT_ORDER.DESCENDING : SORT_ORDER.ASCENDING
       );
     }
+  };
+  const rowRenderer = ({ key, index, style }) => {
+    const row = rows[index];
+
+    return (
+      <div
+        role="row"
+        key={key}
+        className={styles.dataRow}
+        style={style}
+        aria-rowindex={index + 2}
+        data-testid={`data-row-${index}`}
+      >
+        {
+          columns.map((col, index) => (
+            <div
+              key={`col-${index}`}
+              role="gridcell"
+              className={styles.dataCell}
+              aria-colindex={index + 1}
+            >
+              {col.renderCell ? col.renderCell(row[col.field], row) : row[col.field]}
+            </div>
+          ))
+        }
+      </div>
+    );
   };
 
   return (
@@ -85,28 +114,30 @@ const DataGrid = ({
           )
         }
         {
-          !!rows.length && rows.map((row, index) => (
-            <div
-              role="row"
-              key={row.id ? `row-${row.id}-${index}` : index}
-              className={styles.dataRow}
-              aria-rowindex={index + 2}
-              data-testid={`data-row-${index}`}
-            >
+          !!rows.length && virtualize && (
+            <AutoSizer>
               {
-                columns.map((col, index) => (
-                  <div
-                    key={`col-${index}`}
-                    role="gridcell"
-                    className={styles.dataCell}
-                    aria-colindex={index + 1}
-                  >
-                    {col.renderCell ? col.renderCell(row[col.field], row) : row[col.field]}
-                  </div>
-                ))
+                ({ height, width }) => (
+                  <List
+                    height={height}
+                    width={width}
+                    rowCount={rows.length}
+                    rowHeight={68}
+                    rowRenderer={rowRenderer}
+                  />
+                )
               }
-            </div>
-          ))
+            </AutoSizer>
+          )
+        }
+        {
+          !!rows.length && !virtualize && rows.map((row, index) => rowRenderer({
+            key: row.id ? `row-${row.id}-${index}` : index,
+            index,
+            style: {
+              height: '68px'
+            }
+          }))
         }
       </div>
       {
@@ -127,6 +158,7 @@ DataGrid.propTypes = {
     sortable: PropTypes.bool,
     renderCell: PropTypes.func
   })).isRequired,
+  virtualize: PropTypes.bool,
   sortCol: PropTypes.string,
   sortOrder: PropTypes.string,
   onSort: PropTypes.func

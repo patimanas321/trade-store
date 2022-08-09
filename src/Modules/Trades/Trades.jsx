@@ -64,7 +64,7 @@ const Trades = ({
   return (
     <>
       <TradeFetchSummary summary={lastUpdate} onFetchNewRecords={fetchNewTrades} />
-      <DataGrid columns={cols} rows={trades} sortCol={sortColumn} sortOrder={sortOrder} onSort={setSortModel} />
+      <DataGrid virtualize columns={cols} rows={trades} sortCol={sortColumn} sortOrder={sortOrder} onSort={setSortModel} />
     </>
   );
 };

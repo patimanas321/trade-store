@@ -13,11 +13,11 @@ const generateRandomMaturityDate = () => {
 const generateNewTrades = () => {
   const res = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 1000; i++) {
     res.push({
-      id: `TRADE_${generateRandomNumber(1, 20).toString().padStart(4, '0')}`,
+      id: `TRADE_${generateRandomNumber(1, 2000).toString().padStart(4, '0')}`,
       version: generateRandomNumber(1, 10),
-      counterPartyId: `Counter-Party-${i}`,
+      counterPartyId: `Counter-Party-${i.toString().padStart(4, '0')}`,
       bookingId: `B_${generateRandomNumber(1, 10000).toString().padStart(5, '0')}`,
       maturityDate: generateRandomMaturityDate(),
       createdDate: new Date()
