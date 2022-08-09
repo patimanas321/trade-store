@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Trade Store Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Trade Store](./Screenshots/Screenshot_1.png)
 
-## Available Scripts
+# Running Application in local
+
+1. Start `JSON-SERVER`
+```
+npm run json-server
+```
+2. Start application
+```
+npm start
+```
+3. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+# Using the Application
+
+- On initial load, application fetches first set of trades and displays in grid.
+- On click of `FETCH NEW TRADES` a new set of trades gets fetched and added to store.
+- While merging, each new trade is validated against below constraints and necessary actions are taken
+    1. If lower version is received, it will be rejected.
+    2. If version is same, it will override the existing record.
+    3. If maturity date is prior to today, it will be rejected.
+    4. If a newer version or a completely new trade, it will be added.
+- Store automatically updates expiry of all trades in store.
+- After each fetch, fetch summary is displayed reflecting all rejections/additions.
+
+# Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+## `npm run json-server`
+
+Start `JSON-SERVER`. This will host the required apis for the app @ [http://localhost:3001](http://localhost:3001)
+## `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
+## `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## `npm run code-coverage`
+Generate code coverage for the application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## `npm run build`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Builds the app for production to the `build` folder.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Unit Test Coverage
 
-### `npm run eject`
+This application have more then 80% of unit test coverage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Code Coverage](./Screenshots/Screenshot_2.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Light House report
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Light House report](./Screenshots/Screenshot_3.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
