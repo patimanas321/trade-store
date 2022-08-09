@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "json-server": "node db/server.js",
-    "lint-fix": "eslint --fix --ext .js,.jsx ."
+    "lint-fix": "eslint --fix --ext .js,.jsx .",
+    "code-coverage": "npm run test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
