@@ -7,7 +7,8 @@ const strings = {
     booking_id: 'Booking Id',
     maturity_date: 'Maturity Date',
     created_date: 'Created Date',
-    expired: 'Expired'
+    expired: 'Expired',
+    fetch_new_trades: 'Fetch new trades'
   },
   generic: {
     yes: 'Y',

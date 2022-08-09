@@ -3,11 +3,12 @@ import DataGrid from '../../Components/core/DataGrid/DataGrid';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Button from '../../Components/core/Button';
 import useLocalize from '../../Hooks/useLocalize';
 import { getNewTrades, setSortModel } from '../../Store/actions/tradeActions';
 import AppConstants from '../../Constants/AppConstants';
 
-// import styles from './Header.module.css';
+import styles from './Trades.module.css';
 
 const Trades = ({
   trades,
@@ -61,12 +62,15 @@ const Trades = ({
     setSortModel(col, order);
   };
 
-  useEffect(() => {
-    fetchNewTrades().then();
-  }, []);
+  useEffect(fetchNewTrades, []);
 
   return (
-    <DataGrid columns={cols} rows={trades} sortCol={sortColumn} sortOrder={sortOrder} onSort={handleSort} />
+    <>
+      <DataGrid columns={cols} rows={trades} sortCol={sortColumn} sortOrder={sortOrder} onSort={handleSort} />
+      <div className={styles.actionRow}>
+        <Button label={translate('trades.fetch_new_trades')} onClick={() => fetchNewTrades()} />
+      </div>
+    </>
   );
 };
 
